@@ -5,8 +5,38 @@
     "name": "Debug ANTLR4 grammar",
     "type": "antlr-debug",
     "request": "launch",
-    "input": "input.txt",
-    "grammar": "simpleLang.g4",
+    "input": "ejemplo1.correcto.txt",
+    "grammar": "analizador.g4",
+    "printParseTree": true,
+    "visualParseTree": true
+    },
+
+     {
+    "name": "Debug ANTLR4 grammar",
+    "type": "antlr-debug",
+    "request": "launch",
+    "input": "ejemplo2.correcto.txt",
+    "grammar": "analizador.g4",
+    "printParseTree": true,
+    "visualParseTree": true
+    },
+
+     {
+    "name": "Debug ANTLR4 grammar",
+    "type": "antlr-debug",
+    "request": "launch",
+    "input": "ejemplo1.incorrecto.txt",
+    "grammar": "analizador.g4",
+    "printParseTree": true,
+    "visualParseTree": true
+    },
+
+     {
+    "name": "Debug ANTLR4 grammar",
+    "type": "antlr-debug",
+    "request": "launch",
+    "input": "ejemplo2.incorrecto.txt",
+    "grammar": "analizador.g4",
     "printParseTree": true,
     "visualParseTree": true
     }
