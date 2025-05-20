@@ -2,40 +2,40 @@
     "version": "2.0.0",
     "configurations": [
     {
-    "name": "Debug ANTLR4 grammar",
+    "name": "Ejemplo1Correcto.txt",
     "type": "antlr-debug",
     "request": "launch",
-    "input": "ejemplo1.correcto.txt",
+    "input": "Ejemplo1Correcto.txt",
     "grammar": "analizador.g4",
     "printParseTree": true,
     "visualParseTree": true
     },
 
      {
-    "name": "Debug ANTLR4 grammar",
+    "name": "Ejemplo2Correcto.txt",
     "type": "antlr-debug",
     "request": "launch",
-    "input": "ejemplo2.correcto.txt",
+    "input": "Ejemplo2Correcto.txt",
     "grammar": "analizador.g4",
     "printParseTree": true,
     "visualParseTree": true
     },
 
      {
-    "name": "Debug ANTLR4 grammar",
+    "name": "Ejemplo1Incorrecto.txt",
     "type": "antlr-debug",
     "request": "launch",
-    "input": "ejemplo1.incorrecto.txt",
+    "input": "Ejemplo1Incorrecto.txt",
     "grammar": "analizador.g4",
     "printParseTree": true,
     "visualParseTree": true
     },
 
      {
-    "name": "Debug ANTLR4 grammar",
+    "name": "Ejemplo2Incorrecto.txt",
     "type": "antlr-debug",
     "request": "launch",
-    "input": "ejemplo2.incorrecto.txt",
+    "input": "Ejemplo2Incorrecto.txt",
     "grammar": "analizador.g4",
     "printParseTree": true,
     "visualParseTree": true

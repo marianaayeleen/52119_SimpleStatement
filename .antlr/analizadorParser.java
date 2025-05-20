@@ -19,11 +19,12 @@ public class analizadorParser extends Parser {
 		TextLiteral=1, Number=2, Identifier=3, OUTPUT=4, LPAREN=5, RPAREN=6, SEMI=7, 
 		LBRACE=8, RBRACE=9, IGUAL=10, WS=11;
 	public static final int
-		RULE_prog = 0, RULE_stat = 1, RULE_assignment = 2, RULE_outputStmt = 3, 
-		RULE_constant = 4;
+		RULE_prog = 0, RULE_simpleStatement = 1, RULE_assignmentStatement = 2, 
+		RULE_outputStatement = 3, RULE_constant = 4;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"prog", "stat", "assignment", "outputStmt", "constant"
+			"prog", "simpleStatement", "assignmentStatement", "outputStatement", 
+			"constant"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -95,11 +96,11 @@ public class analizadorParser extends Parser {
 	@SuppressWarnings("CheckReturnValue")
 	public static class ProgContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(analizadorParser.EOF, 0); }
-		public List<StatContext> stat() {
-			return getRuleContexts(StatContext.class);
+		public List<SimpleStatementContext> simpleStatement() {
+			return getRuleContexts(SimpleStatementContext.class);
 		}
-		public StatContext stat(int i) {
-			return getRuleContext(StatContext.class,i);
+		public SimpleStatementContext simpleStatement(int i) {
+			return getRuleContext(SimpleStatementContext.class,i);
 		}
 		public ProgContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -121,7 +122,7 @@ public class analizadorParser extends Parser {
 				{
 				{
 				setState(10);
-				stat();
+				simpleStatement();
 				}
 				}
 				setState(15);
@@ -144,22 +145,22 @@ public class analizadorParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class StatContext extends ParserRuleContext {
-		public AssignmentContext assignment() {
-			return getRuleContext(AssignmentContext.class,0);
+	public static class SimpleStatementContext extends ParserRuleContext {
+		public AssignmentStatementContext assignmentStatement() {
+			return getRuleContext(AssignmentStatementContext.class,0);
 		}
-		public OutputStmtContext outputStmt() {
-			return getRuleContext(OutputStmtContext.class,0);
+		public OutputStatementContext outputStatement() {
+			return getRuleContext(OutputStatementContext.class,0);
 		}
-		public StatContext(ParserRuleContext parent, int invokingState) {
+		public SimpleStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_stat; }
+		@Override public int getRuleIndex() { return RULE_simpleStatement; }
 	}
 
-	public final StatContext stat() throws RecognitionException {
-		StatContext _localctx = new StatContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_stat);
+	public final SimpleStatementContext simpleStatement() throws RecognitionException {
+		SimpleStatementContext _localctx = new SimpleStatementContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_simpleStatement);
 		try {
 			setState(20);
 			_errHandler.sync(this);
@@ -168,14 +169,14 @@ public class analizadorParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(18);
-				assignment();
+				assignmentStatement();
 				}
 				break;
 			case OUTPUT:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(19);
-				outputStmt();
+				outputStatement();
 				}
 				break;
 			default:
@@ -194,22 +195,22 @@ public class analizadorParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class AssignmentContext extends ParserRuleContext {
+	public static class AssignmentStatementContext extends ParserRuleContext {
 		public TerminalNode Identifier() { return getToken(analizadorParser.Identifier, 0); }
 		public TerminalNode IGUAL() { return getToken(analizadorParser.IGUAL, 0); }
 		public ConstantContext constant() {
 			return getRuleContext(ConstantContext.class,0);
 		}
 		public TerminalNode SEMI() { return getToken(analizadorParser.SEMI, 0); }
-		public AssignmentContext(ParserRuleContext parent, int invokingState) {
+		public AssignmentStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_assignment; }
+		@Override public int getRuleIndex() { return RULE_assignmentStatement; }
 	}
 
-	public final AssignmentContext assignment() throws RecognitionException {
-		AssignmentContext _localctx = new AssignmentContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_assignment);
+	public final AssignmentStatementContext assignmentStatement() throws RecognitionException {
+		AssignmentStatementContext _localctx = new AssignmentStatementContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_assignmentStatement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -235,21 +236,21 @@ public class analizadorParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class OutputStmtContext extends ParserRuleContext {
+	public static class OutputStatementContext extends ParserRuleContext {
 		public TerminalNode OUTPUT() { return getToken(analizadorParser.OUTPUT, 0); }
 		public TerminalNode LPAREN() { return getToken(analizadorParser.LPAREN, 0); }
 		public TerminalNode TextLiteral() { return getToken(analizadorParser.TextLiteral, 0); }
 		public TerminalNode RPAREN() { return getToken(analizadorParser.RPAREN, 0); }
 		public TerminalNode SEMI() { return getToken(analizadorParser.SEMI, 0); }
-		public OutputStmtContext(ParserRuleContext parent, int invokingState) {
+		public OutputStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_outputStmt; }
+		@Override public int getRuleIndex() { return RULE_outputStatement; }
 	}
 
-	public final OutputStmtContext outputStmt() throws RecognitionException {
-		OutputStmtContext _localctx = new OutputStmtContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_outputStmt);
+	public final OutputStatementContext outputStatement() throws RecognitionException {
+		OutputStatementContext _localctx = new OutputStatementContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_outputStatement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{

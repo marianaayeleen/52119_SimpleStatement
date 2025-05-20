@@ -1,14 +1,14 @@
 grammar analizador;
 
-prog: (stat)* EOF;
+prog: (simpleStatement)* EOF;
 
-stat: assignment
-    | outputStmt
+simpleStatement: assignmentStatement
+    | outputStatement
     ;
 
-assignment: Identifier '=' constant ';' ;
+assignmentStatement: Identifier '=' constant ';' ;
 
-outputStmt: 'output' '(' TextLiteral ')' ';' ;
+outputStatement: 'output' '(' TextLiteral ')' ';' ;
 
 constant: Number
         | TextLiteral

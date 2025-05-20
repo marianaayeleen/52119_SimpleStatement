@@ -12,20 +12,20 @@ export default class analizadorVisitor extends antlr4.tree.ParseTreeVisitor {
 	}
 
 
-	// Visit a parse tree produced by analizadorParser#stat.
-	visitStat(ctx) {
+	// Visit a parse tree produced by analizadorParser#simpleStatement.
+	visitSimpleStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by analizadorParser#assignment.
-	visitAssignment(ctx) {
+	// Visit a parse tree produced by analizadorParser#assignmentStatement.
+	visitAssignmentStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 
 
-	// Visit a parse tree produced by analizadorParser#outputStmt.
-	visitOutputStmt(ctx) {
+	// Visit a parse tree produced by analizadorParser#outputStatement.
+	visitOutputStatement(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

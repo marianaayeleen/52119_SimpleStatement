@@ -1,20 +1,36 @@
 import analizadorVisitor from './generated/analizadorVisitor.js';
 
-export default class CustomanalizadorVisitor extends analizadorVisitor {
-    constructor() {
-        super();
-        this.variables = {};  // Para guardar variables asignadas
-    }
+class CustomanalizadorVisitor extends analizadorVisitor {
+  constructor() {
+    super();
+    this.memory = {};
+  }
 
-    visitAssignmentStatement(ctx) {
-        const id = ctx.Identifier().getText();
-        const value = ctx.constant().getText();
-        this.variables[id] = value;
-        console.log(`Asignación: ${id} = ${value}`);
-    }
+  visitAssignment(ctx) {
+    const id = ctx.Identifier().getText();
+    const value = this.visit(ctx.constant());
+    this.memory[id] = value;
+    console.log(`Asignación: ${id} = ${value}`);
+    return value;
+  }
 
-    visitOutputStatement(ctx) {
-        const text = ctx.TextLiteral().getText();
-        console.log(`Salida: ${text}`);
+  visitOutputStmt(ctx) {
+    const text = this.visit(ctx.TextLiteral());
+    console.log(`Salida: ${text}`);
+    return text;
+  }
+
+  visitTextLiteral(ctx) {
+    return ctx.getText().slice(1, -1); // quitar comillas
+  }
+
+  visitConstant(ctx) {
+    if (ctx.Number()) {
+      return parseInt(ctx.Number().getText());
+    } else {
+      return this.visit(ctx.TextLiteral());
     }
+  }
 }
+
+export default CustomanalizadorVisitor;

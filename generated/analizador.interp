@@ -28,9 +28,9 @@ WS
 
 rule names:
 prog
-stat
-assignment
-outputStmt
+simpleStatement
+assignmentStatement
+outputStatement
 constant
 
 

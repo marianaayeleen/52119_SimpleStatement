@@ -14,30 +14,30 @@ export default class analizadorListener extends antlr4.tree.ParseTreeListener {
 	}
 
 
-	// Enter a parse tree produced by analizadorParser#stat.
-	enterStat(ctx) {
+	// Enter a parse tree produced by analizadorParser#simpleStatement.
+	enterSimpleStatement(ctx) {
 	}
 
-	// Exit a parse tree produced by analizadorParser#stat.
-	exitStat(ctx) {
-	}
-
-
-	// Enter a parse tree produced by analizadorParser#assignment.
-	enterAssignment(ctx) {
-	}
-
-	// Exit a parse tree produced by analizadorParser#assignment.
-	exitAssignment(ctx) {
+	// Exit a parse tree produced by analizadorParser#simpleStatement.
+	exitSimpleStatement(ctx) {
 	}
 
 
-	// Enter a parse tree produced by analizadorParser#outputStmt.
-	enterOutputStmt(ctx) {
+	// Enter a parse tree produced by analizadorParser#assignmentStatement.
+	enterAssignmentStatement(ctx) {
 	}
 
-	// Exit a parse tree produced by analizadorParser#outputStmt.
-	exitOutputStmt(ctx) {
+	// Exit a parse tree produced by analizadorParser#assignmentStatement.
+	exitAssignmentStatement(ctx) {
+	}
+
+
+	// Enter a parse tree produced by analizadorParser#outputStatement.
+	enterOutputStatement(ctx) {
+	}
+
+	// Exit a parse tree produced by analizadorParser#outputStatement.
+	exitOutputStatement(ctx) {
 	}
 
 

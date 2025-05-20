@@ -30,7 +30,8 @@ export default class analizadorParser extends antlr4.Parser {
     static symbolicNames = [ null, "TextLiteral", "Number", "Identifier", 
                              "OUTPUT", "LPAREN", "RPAREN", "SEMI", "LBRACE", 
                              "RBRACE", "IGUAL", "WS" ];
-    static ruleNames = [ "prog", "stat", "assignment", "outputStmt", "constant" ];
+    static ruleNames = [ "prog", "simpleStatement", "assignmentStatement", 
+                         "outputStatement", "constant" ];
 
     constructor(input) {
         super(input);
@@ -53,7 +54,7 @@ export default class analizadorParser extends antlr4.Parser {
 	        _la = this._input.LA(1);
 	        while(_la===3 || _la===4) {
 	            this.state = 10;
-	            this.stat();
+	            this.simpleStatement();
 	            this.state = 15;
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
@@ -76,9 +77,9 @@ export default class analizadorParser extends antlr4.Parser {
 
 
 
-	stat() {
-	    let localctx = new StatContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 2, analizadorParser.RULE_stat);
+	simpleStatement() {
+	    let localctx = new SimpleStatementContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 2, analizadorParser.RULE_simpleStatement);
 	    try {
 	        this.state = 20;
 	        this._errHandler.sync(this);
@@ -86,12 +87,12 @@ export default class analizadorParser extends antlr4.Parser {
 	        case 3:
 	            this.enterOuterAlt(localctx, 1);
 	            this.state = 18;
-	            this.assignment();
+	            this.assignmentStatement();
 	            break;
 	        case 4:
 	            this.enterOuterAlt(localctx, 2);
 	            this.state = 19;
-	            this.outputStmt();
+	            this.outputStatement();
 	            break;
 	        default:
 	            throw new antlr4.error.NoViableAltException(this);
@@ -112,9 +113,9 @@ export default class analizadorParser extends antlr4.Parser {
 
 
 
-	assignment() {
-	    let localctx = new AssignmentContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 4, analizadorParser.RULE_assignment);
+	assignmentStatement() {
+	    let localctx = new AssignmentStatementContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 4, analizadorParser.RULE_assignmentStatement);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 22;
@@ -141,9 +142,9 @@ export default class analizadorParser extends antlr4.Parser {
 
 
 
-	outputStmt() {
-	    let localctx = new OutputStmtContext(this, this._ctx, this.state);
-	    this.enterRule(localctx, 6, analizadorParser.RULE_outputStmt);
+	outputStatement() {
+	    let localctx = new OutputStatementContext(this, this._ctx, this.state);
+	    this.enterRule(localctx, 6, analizadorParser.RULE_outputStatement);
 	    try {
 	        this.enterOuterAlt(localctx, 1);
 	        this.state = 27;
@@ -218,9 +219,9 @@ analizadorParser.IGUAL = 10;
 analizadorParser.WS = 11;
 
 analizadorParser.RULE_prog = 0;
-analizadorParser.RULE_stat = 1;
-analizadorParser.RULE_assignment = 2;
-analizadorParser.RULE_outputStmt = 3;
+analizadorParser.RULE_simpleStatement = 1;
+analizadorParser.RULE_assignmentStatement = 2;
+analizadorParser.RULE_outputStatement = 3;
 analizadorParser.RULE_constant = 4;
 
 class ProgContext extends antlr4.ParserRuleContext {
@@ -241,14 +242,14 @@ class ProgContext extends antlr4.ParserRuleContext {
 	    return this.getToken(analizadorParser.EOF, 0);
 	};
 
-	stat = function(i) {
+	simpleStatement = function(i) {
 	    if(i===undefined) {
 	        i = null;
 	    }
 	    if(i===null) {
-	        return this.getTypedRuleContexts(StatContext);
+	        return this.getTypedRuleContexts(SimpleStatementContext);
 	    } else {
-	        return this.getTypedRuleContext(StatContext,i);
+	        return this.getTypedRuleContext(SimpleStatementContext,i);
 	    }
 	};
 
@@ -277,7 +278,7 @@ class ProgContext extends antlr4.ParserRuleContext {
 
 
 
-class StatContext extends antlr4.ParserRuleContext {
+class SimpleStatementContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -288,32 +289,32 @@ class StatContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = analizadorParser.RULE_stat;
+        this.ruleIndex = analizadorParser.RULE_simpleStatement;
     }
 
-	assignment() {
-	    return this.getTypedRuleContext(AssignmentContext,0);
+	assignmentStatement() {
+	    return this.getTypedRuleContext(AssignmentStatementContext,0);
 	};
 
-	outputStmt() {
-	    return this.getTypedRuleContext(OutputStmtContext,0);
+	outputStatement() {
+	    return this.getTypedRuleContext(OutputStatementContext,0);
 	};
 
 	enterRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.enterStat(this);
+	        listener.enterSimpleStatement(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.exitStat(this);
+	        listener.exitSimpleStatement(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof analizadorVisitor ) {
-	        return visitor.visitStat(this);
+	        return visitor.visitSimpleStatement(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -324,7 +325,7 @@ class StatContext extends antlr4.ParserRuleContext {
 
 
 
-class AssignmentContext extends antlr4.ParserRuleContext {
+class AssignmentStatementContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -335,7 +336,7 @@ class AssignmentContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = analizadorParser.RULE_assignment;
+        this.ruleIndex = analizadorParser.RULE_assignmentStatement;
     }
 
 	Identifier() {
@@ -356,19 +357,19 @@ class AssignmentContext extends antlr4.ParserRuleContext {
 
 	enterRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.enterAssignment(this);
+	        listener.enterAssignmentStatement(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.exitAssignment(this);
+	        listener.exitAssignmentStatement(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof analizadorVisitor ) {
-	        return visitor.visitAssignment(this);
+	        return visitor.visitAssignmentStatement(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -379,7 +380,7 @@ class AssignmentContext extends antlr4.ParserRuleContext {
 
 
 
-class OutputStmtContext extends antlr4.ParserRuleContext {
+class OutputStatementContext extends antlr4.ParserRuleContext {
 
     constructor(parser, parent, invokingState) {
         if(parent===undefined) {
@@ -390,7 +391,7 @@ class OutputStmtContext extends antlr4.ParserRuleContext {
         }
         super(parent, invokingState);
         this.parser = parser;
-        this.ruleIndex = analizadorParser.RULE_outputStmt;
+        this.ruleIndex = analizadorParser.RULE_outputStatement;
     }
 
 	OUTPUT() {
@@ -415,19 +416,19 @@ class OutputStmtContext extends antlr4.ParserRuleContext {
 
 	enterRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.enterOutputStmt(this);
+	        listener.enterOutputStatement(this);
 		}
 	}
 
 	exitRule(listener) {
 	    if(listener instanceof analizadorListener ) {
-	        listener.exitOutputStmt(this);
+	        listener.exitOutputStatement(this);
 		}
 	}
 
 	accept(visitor) {
 	    if ( visitor instanceof analizadorVisitor ) {
-	        return visitor.visitOutputStmt(this);
+	        return visitor.visitOutputStatement(this);
 	    } else {
 	        return visitor.visitChildren(this);
 	    }
@@ -487,7 +488,7 @@ class ConstantContext extends antlr4.ParserRuleContext {
 
 
 analizadorParser.ProgContext = ProgContext; 
-analizadorParser.StatContext = StatContext; 
-analizadorParser.AssignmentContext = AssignmentContext; 
-analizadorParser.OutputStmtContext = OutputStmtContext; 
+analizadorParser.SimpleStatementContext = SimpleStatementContext; 
+analizadorParser.AssignmentStatementContext = AssignmentStatementContext; 
+analizadorParser.OutputStatementContext = OutputStatementContext; 
 analizadorParser.ConstantContext = ConstantContext; 
