@@ -39,7 +39,11 @@ x = 42;
 output("Hola mundo"); 
 
 ![Hola Mundo](https://github.com/user-attachments/assets/74410f8b-405b-4cc6-9ca6-0fcfa60d41e0)
+
+
+
 texto = "Bienvenidos!" 
+
 output("Programa iniciado") 
 
 ![Bienvenidos](https://github.com/user-attachments/assets/1ffdceaf-fdb0-43ab-a004-66301f6b018a)
